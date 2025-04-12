@@ -3,17 +3,19 @@ import time
 import board
 import neopixel
 from characters import ONE
-from board_helpers import object_impose, object_accross
-
+from board_helpers import *
 #Initialise a strips variable, provide the GPIO Data Pin
 #utilised and the amount of LED Nodes on strip and brightness (0 to 1 value)
 pixels1 = neopixel.NeoPixel(board.D18, 2700, brightness=.5, auto_write=False)
 
 #object_impose(pixels1, ONE, 10, (255, 0, 0), 1)
 
-object_accross(pixels1, ONE, (255, 0, 0), .30)
+#object_accross(pixels1, ONE, (255, 0, 0), .30)
 
 
+
+# pixels1.fill((0, 0, 0))
+# pixels1.show()
 # for i in range(0, 300):
 #     pixels1[i] = (255, 0, 0)
 #     pixels1[599 - i] = (255, 0, 0)

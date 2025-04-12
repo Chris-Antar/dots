@@ -1,8 +1,5 @@
 import time
-
-
-
-
+import stock
 
 def object_impose(board, board_object, start_col, color):
     row = 9
@@ -30,4 +27,5 @@ def object_accross(board, board_object, color, duration):
         object_impose(board, board_object, i, (0, 0, 0))
 
 
+def stock_across(board, stock, duration):
 
