@@ -4,6 +4,8 @@ import board
 import neopixel
 from characters import ONE
 from board_helpers import *
+import stock
+
 #Initialise a strips variable, provide the GPIO Data Pin
 #utilised and the amount of LED Nodes on strip and brightness (0 to 1 value)
 pixels1 = neopixel.NeoPixel(board.D18, 2700, brightness=.5, auto_write=False)
@@ -12,7 +14,7 @@ pixels1 = neopixel.NeoPixel(board.D18, 2700, brightness=.5, auto_write=False)
 
 #object_accross(pixels1, ONE, (255, 0, 0), .30)
 
-
+stocks_across(pixels1,[ONE, ONE, ONE], None, .30)
 
 # pixels1.fill((0, 0, 0))
 # pixels1.show()
