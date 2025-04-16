@@ -1,11 +1,13 @@
 import time
-import stock
 from characters import ONE
 
 BOARD_WIDTH = 300
 BOARD_HEIGHT = 9
 
 def objects_impose(board, board_objects, start_cols, color):
+    """
+    Imposes a list of objects on the board at specified start columns
+    """
     cur_obj_col = 0
     # if start_cols[cur_col] > BOARD_WIDTH dont do anything
     for object in board_objects:
@@ -31,27 +33,26 @@ def objects_impose(board, board_objects, start_cols, color):
 
 
 
-def stocks_across(board, tickers, pct_changes, duration: float):
+def stocks_across(board, objects, duration: float):
     """
     Sequentially moves a list of stock objects across the board
     """
     ticker_index = 1 
     positions = [0]
-    total_objects_length = len(tickers[0][0]) - 1
+    total_objects_length = len(objects[0][0]) - 1
     #Change board width to 300 + len(tickers) * len(ticker) for ticker in tickers
     for i in range(BOARD_WIDTH):
-        if ticker_index < len(tickers):
-            if i > len(tickers[:ticker_index]) + total_objects_length:
-                total_objects_length += (len(tickers[ticker_index][0]))
-                print(total_objects_length)
+        if ticker_index < len(objects):
+            if i > len(objects[:ticker_index]) + total_objects_length:
+                total_objects_length += (len(objects[ticker_index][0]))
                 ticker_index += 1
                 positions.append(0)
         # add objects and start positions
-        objects_impose(board, tickers[:ticker_index], positions, (255, 0, 0))
+        objects_impose(board, objects[:ticker_index], positions, (255, 0, 0))
         time.sleep(duration)
         # remove objects
         # test board_fill(0,0,0) performance opposed to this
-        objects_impose(board, tickers[:ticker_index], positions, (0, 0, 0))
+        objects_impose(board, objects[:ticker_index], positions, (0, 0, 0))
 
         #increment position
         positions = [x + 1 for x in positions]
