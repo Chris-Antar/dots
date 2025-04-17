@@ -28,6 +28,7 @@ def objects_impose(board, board_objects, start_cols, color):
                 col += 1
             row -= 1
         cur_obj_col += 1
+    #remove this, it slows it down, only show after all updates are made
     board.show()
 
 
