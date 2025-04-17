@@ -1,5 +1,4 @@
 import time
-from characters import ONE
 
 BOARD_WIDTH = 300
 BOARD_HEIGHT = 9
