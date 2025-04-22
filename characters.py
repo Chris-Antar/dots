@@ -1,3 +1,36 @@
+def combine_2d_arrays(arrays):
+    """
+    Combines any number of 2D arrays by appending their inner lists
+    with a 0 separator.
+
+    Args:
+        *arrays: A variable number of 2D arrays (lists of lists).
+
+    Returns:
+        A new 2D array representing the combined result.
+        Returns an empty list if no arrays are provided.
+    """
+    if not arrays:
+        return []
+
+    combined_array = []
+    num_rows = len(arrays[0])  # Assume all arrays have the same number of rows initially
+
+    # Check if all input arrays have the same number of rows
+    if not all(len(arr) == num_rows for arr in arrays):
+        print("Warning: Input arrays have different numbers of rows. Combining based on the first array's row count.")
+
+    for i in range(num_rows):
+        combined_row = []
+        for arr in arrays:
+            if i < len(arr):  # Ensure we don't go out of bounds for arrays with fewer rows
+                combined_row.extend(arr[i])
+                if arr != arrays[-1]:  # Add separator if it's not the last array
+                    combined_row.append(0)
+        combined_array.append(combined_row)
+
+    return combined_array
+
 matrix_map = {
     "0" : [
     [0, 0, 0, 0, 0],
@@ -56,7 +89,7 @@ matrix_map = {
     [0, 0, 0, 0, 1],
     [0, 0, 0, 0, 1],
     [0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 1]
+    [0, 0, 0, 0, 0]
     ]
     ,
     "5" : [
@@ -108,15 +141,15 @@ matrix_map = {
     ]
     ,
     "9" : [
-    [0, 0, 0, 0, 0],
-    [1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1],
-    [0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0]
+    [0, 0, 0, 0],
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 1, 1, 1],
+    [0, 0, 0, 1],
+    [0, 0, 0, 1],
+    [0, 0, 0, 1],
+    [0, 0, 0, 0]
     ]
     ,
     "A" : [
@@ -158,7 +191,7 @@ matrix_map = {
     "D" : [
     [0, 0, 0, 0, 0],
     [1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
@@ -428,6 +461,42 @@ matrix_map = {
     [0, 1, 0, 0, 0],
     [1, 0, 0, 0, 0],
     [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0]
+    ]
+    ,
+    "up" : [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+    ]
+    ,
+    "down" : [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [0, 1, 1, 1, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+    ]
+    ,
+    "%" : [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 1],
+    [0, 0, 0, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 0],
+    [1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0]
     ]
     ,
