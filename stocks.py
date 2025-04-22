@@ -19,3 +19,4 @@ def get_stock_data():
         return dict(zip(tickers, pcts))
 
 print(get_stock_data())
+
