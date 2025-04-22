@@ -14,11 +14,10 @@ WHITE = (255, 255, 255)
 
 #Initialise a strips variable, provide the GPIO Data Pin
 #utilised and the amount of LED Nodes on strip and brightness (0 to 1 value)
-pixels1 = neopixel.NeoPixel(board.D18, 2700, brightness=.5, auto_write=False)
+pixels1 = neopixel.NeoPixel(board.D18, 2700, brightness=.9, auto_write=False)
 
 stocks = get_stock_data()
 stock_objects = []
-print(stocks)
 
 for k, v in stocks.items():
     if v > 0:
@@ -47,6 +46,10 @@ for k, v in stocks.items():
             word = combine_2d_arrays([word, matrix_map[char]])
 
     stock_objects.append(BoardObject(word, color))
+    stock_objects.append(BoardObject(matrix_map[" "], color))
+    stock_objects.append(BoardObject(matrix_map[" "], color))
+    stock_objects.append(BoardObject(matrix_map[" "], color))
+    stock_objects.append(BoardObject(matrix_map[" "], color))
 
-stocks_across(pixels1, stock_objects, .30)
+stocks_across(pixels1, stock_objects, 1)
 
