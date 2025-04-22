@@ -54,7 +54,6 @@ def stocks_across(board, objects, duration: float):
         # add objects and start positions
         objects_impose(board, objects[:ticker_index], positions)
         time.sleep(duration)
-        # remove objects
         # test board_fill(0,0,0) performance opposed to this
         objects_impose(board, objects[:ticker_index], positions, True)
 

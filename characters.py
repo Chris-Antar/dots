@@ -14,18 +14,18 @@ def combine_2d_arrays(arrays):
         return []
 
     combined_array = []
-    num_rows = len(arrays[0])  # Assume all arrays have the same number of rows initially
+    num_rows = len(arrays[0]) if arrays else 0  # Get row count from the first array
 
     # Check if all input arrays have the same number of rows
-    if not all(len(arr) == num_rows for arr in arrays):
+    if arrays and not all(len(arr) == num_rows for arr in arrays):
         print("Warning: Input arrays have different numbers of rows. Combining based on the first array's row count.")
 
     for i in range(num_rows):
         combined_row = []
-        for arr in arrays:
-            if i < len(arr):  # Ensure we don't go out of bounds for arrays with fewer rows
+        for idx, arr in enumerate(arrays):
+            if i < len(arr):
                 combined_row.extend(arr[i])
-                if arr != arrays[-1]:  # Add separator if it's not the last array
+                if idx < len(arrays) - 1:  # Add separator if it's not the last array
                     combined_row.append(0)
         combined_array.append(combined_row)
 
@@ -498,6 +498,18 @@ matrix_map = {
     [1, 0, 0, 0, 1],
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0]
+    ]
+    ,
+    "." : [
+    [0,],
+    [0,],
+    [0,],
+    [0,],
+    [0,],
+    [0,],
+    [0,],
+    [1,],
+    [0,]
     ]
     ,
     }
