@@ -1,6 +1,6 @@
 import yfinance as yf
 
-tickers = ["AAPL","GOOGL","COST","COF", "JNJ", "TSLA"]
+tickers = ["PLTR","COF","GOOGL","COST","AAPL", "JNJ", "TSLA"]
 
 def get_stock_data():
     """

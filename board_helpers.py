@@ -18,8 +18,13 @@ def objects_impose(board, board_objects, start_cols, blank=False):
         for i in object.shape:
             col = 0
             for j in reversed(i):
+                # Object behind start
                 if  start_cols[cur_obj_col] - col < 0:
                     break
+                # Object in after finish
+                if start_cols[cur_obj_col] - col >= BOARD_WIDTH:
+                    col += 1
+                    continue
                 if j == 0:
                     col += 1
                     continue
@@ -45,7 +50,8 @@ def stocks_across(board, objects, duration: float):
     positions = [0]
     total_objects_length = len(objects[0].shape[0])
     #Change board width to 300 + len(tickers) * len(ticker) for ticker in tickers
-    for i in range(BOARD_WIDTH):
+    i = 0
+    while True:
         if ticker_index < len(objects):
             if i > total_objects_length:
                 total_objects_length += (len(objects[ticker_index].shape[0])) + 1
@@ -58,3 +64,13 @@ def stocks_across(board, objects, duration: float):
         board.fill((0, 0, 0))
         #increment position
         positions = [x + 1 for x in positions]
+        i += 1
+        #Chagne to > bnoard width if going away too early
+        if positions[0] - len(objects[0].shape[0]) >= BOARD_WIDTH:    
+            positions.pop(0)
+            object = objects.pop(0)
+            objects.append(object)  
+            
+            ticker_index -= 1
+            i -= len(objects[ticker_index - 1].shape[0])
+            total_objects_length -= len(objects[ticker_index - 1].shape[0])
